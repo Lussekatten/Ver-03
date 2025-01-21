@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./styles/mystyle.css">
+  <script src="./scripts/my-js.js" defer></script>
+  <title>Bucket List</title>
+</head>
+
+<body>
+  <header>
+    <h1>My Bucket List</h1>
+  </header>
+  <main>
+    <div class="content-small">
+      <form id="categoriesForm" class="form-inline">
+        <div class="form-group">
+          <label for="categoryName">Add new category:</label>
+          <input type="text" class="form-control" name="categoryName" id="categoryName" placeholder="New category name"
+            required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+    </div>
+    <div class="content-medium">
+      <form id="addBucketListItemForm">
+        <select  id="activityCategory" class="form-select" aria-label="Default select example">
+
+        </select>  
+        <div class="form-group">
+
+          <input type="text" class="form-control" name="activityName" id="activityName" placeholder="What's next?"
+            required />
+        </div>
+        <button type="submit" class="btn btn-primary">Add new bucket list item</button>
+      </form>
+    </div>
+    <section id="bucketLists" class="content-medium">
+
+    </section>
+  </main>
+  <footer>
+    <div class="content-small">
+      <form id="editForm">
+        <div class="form-group">
+          <label for="categoryName">Edit activity:</label>
+          <input type="text" class="form-control" name="activityDescription" id="activityDescription" placeholder="New description"
+            required>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </form>
+    </div>
+  </footer>
+</body>
+
+</html>
