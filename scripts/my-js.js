@@ -352,9 +352,6 @@ function addElementToOrderedCollection(element) {
     }
 }
 
-console.log(bucketListArr);
-refreshTheBucketList();
-
 //---------------- Event listeners (start) ----------------------------------
 const newCategoryEl = document.getElementById('categoryName');
 newCategoryEl.addEventListener('change', (event) => {
@@ -426,5 +423,3 @@ registerFormEl.addEventListener('submit', (event) => {
     refreshTheBucketList();
 });
 //---------------- Event listeners (end) ----------------------------------
-
-
