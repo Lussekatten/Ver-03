@@ -1,76 +1,90 @@
 body {
-    font-family: Arial, sans-serif;
-  }
-  #bucketLists div {
-    margin-bottom: 20px;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-  }
-  button {
-    margin-left: 10px;
-  }
+  font-family: Arial, sans-serif;
+}
 
-  /* ------ my css -------- */
-  h1{
-    color: rebeccapurple;
-  }
+header h1 {
+  margin-left: 10px;
+}
 
-  main{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+#bucketLists div {
+  margin-bottom: 0.8rem;
+}
 
-  .elementRow{
-    display: flex;
-    padding-left: 3px;
-    padding-right: 3px;
-    background-color: aqua;
-    font-size: 0.9rem;
-    border: 1px solid black;
-    border-radius: 10px;
-  }
-  .elementRow img{
-    padding-top: 2px;
-    padding-left: px;
-    width: 24px;
-    height: auto;
-  }
+button {
+  margin-left: 10px;
+}
 
-  /* section :nth-child(2), :nth-child(4), :nth-child(6){
+/* ------ my css -------- */
+h1 {
+  color: rebeccapurple;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.elementRow {
+  display: flex;
+  padding-left: 3px;
+  padding-right: 3px;
+  background-color: rgb(151, 211, 211);
+  font-size: 0.9rem;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+}
+
+.elementRow img {
+  padding-top: 2px;
+  padding-left: px;
+  width: 24px;
+  height: auto;
+}
+
+/* section :nth-child(2), :nth-child(4), :nth-child(6){
   background-color: rgb(59, 163, 163);
 } */
 
-  .elementRow > p{
-    padding-left: 10px;
-    width: 80vw;
-    height: 0.85rem;
-  }
+.elementRow>p {
+  padding-left: 10px;
+  width: 80vw;
+  height: 0.85rem;
+}
 
-  .content-medium{
-    display: flex;
-    align-content: center;
-    margin-left: 10px;
-    flex-direction: column;
-    width: 40vw;
-  }
-  .content-small{
-    display: flex;
-    align-content: center;
-    margin-left: 10px;
-    flex-direction: column;
-    width: 20vw;
-  }
+.content-medium {
+  display: flex;
+  align-content: center;
+  margin-left: 10px;
+  flex-direction: column;
+  width: 40vw;
+}
 
-  .btn-primary{
-    margin-top: 5px;
+.content-small {
+  display: flex;
+  align-content: center;
+  margin-left: 10px;
+  flex-direction: column;
+  width: 20vw;
+}
 
-  }
+.btn-primary {
+  margin-top: 5px;
+}
+
+.cat-color-0{
+  background-color: rgb(151, 211, 211);
+}
+.cat-color-1{
+  background-color: rgb(103, 187, 103);
+}
+.cat-color-2{
+  background-color: rgb(197, 167, 85);
+}
+.cat-color-3{
+  background-color: rgb(223, 138, 223);
+}
+
+button >img {
+  border: 0;
+}

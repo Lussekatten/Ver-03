@@ -104,15 +104,19 @@ function buildActivitiesListStructure() {
     //We need to build the HTML nodes for every "activity" in our bucket list (i.e. element in the bucketListArr variable)
     //But we must start with the headlines for the activities
     let previousCategory = '';
+    let catIndex=0;
     for (let index = 0; index < bucketListArr.length; index++) {
+        const newDivTag = document.createElement('div');
         //Create headline
         if (previousCategory != bucketListArr[index].catName) {
             const headline = document.createElement('h2');
             headline.innerHTML = bucketListArr[index].catName;
             startingPoint.appendChild(headline);
+            newDivTag.setAttribute('class', 'elementRow cat-color-' + catIndex);
+            catIndex++;
+        }else{
+            newDivTag.setAttribute('class', 'elementRow');
         }
-        const newDivTag = document.createElement('div');
-        newDivTag.setAttribute('class', 'elementRow');
         startingPoint.appendChild(newDivTag);
         createDivContents(bucketListArr[index].id, newDivTag, bucketListArr[index].description, bucketListArr[index].beenThereDoneThat);
         previousCategory = bucketListArr[index].catName;
@@ -215,10 +219,6 @@ function removeBucketListElement(index) {
     refreshTheBucketList();
 }
 
-// function refreshCategoriesDropdown() {
-//     updateAllCategoriesDropdown();
-// }
-
 function initializeBucketList() {
     //In case we want to start with some external data, do this
     for (let index = 0; index < startingActivities.length; index++) {
@@ -226,21 +226,13 @@ function initializeBucketList() {
             id: index,
             beenThereDoneThat: startingActivities[index].beenThereDoneThat,
             catName: startingActivities[index].catName,
-            description: startingActivities[index].description            
-        }        
+            description: startingActivities[index].description
+        }
         addElementToOrderedCollection(elem);
     }
     refreshTheBucketList();
 }
 
-// function updateCategoriesDropdown(newCateg) {
-
-//     // console.log(startingActivities);
-//     const newOption = document.createElement('option');
-//     newOption.setAttribute('Value', newCateg);
-//     newOption.innerHTML = newCateg;
-//     theSelectCat.appendChild(newOption);
-// }
 function updateAllCategoriesDropdown() {
     findAllCategories();
     //Remove the previous categories
@@ -360,7 +352,6 @@ function addElementToOrderedCollection(element) {
     }
 }
 
-//initializeBucketList();
 console.log(bucketListArr);
 refreshTheBucketList();
 
@@ -372,7 +363,7 @@ newCategoryEl.addEventListener('change', (event) => {
 });
 const categoriesFormEl = document.getElementById('categoriesForm');
 categoriesFormEl.addEventListener('submit', (event) => {
-    event.preventDefault(); // förhindrar att sidan laddas om
+    event.preventDefault();
     //Only add a new category if the maximum allowed has not been reached
     if (categoriesFound.length == MAX_ALLOWED_CATEGORIES) {
         alert('The maximum allowed of ' + MAX_ALLOWED_CATEGORIES + ' has been reached! You can not create more')
@@ -394,7 +385,7 @@ newDescriptionEl.addEventListener('change', (event) => {
 
 const editFormEl = document.getElementById('editForm');
 editFormEl.addEventListener('submit', (event) => {
-    event.preventDefault(); // förhindrar att sidan laddas om
+    event.preventDefault();
     bucketListArr[idForEdit].description = newDescriptionEl.value;
 
     //We also need to update the contents of the p-tag (so we won't have to reload the whole bucket list)
