@@ -104,19 +104,18 @@ function buildActivitiesListStructure() {
     //We need to build the HTML nodes for every "activity" in our bucket list (i.e. element in the bucketListArr variable)
     //But we must start with the headlines for the activities
     let previousCategory = '';
-    let catIndex=0;
+    let catIndex=-1;
     for (let index = 0; index < bucketListArr.length; index++) {
         const newDivTag = document.createElement('div');
         //Create headline
         if (previousCategory != bucketListArr[index].catName) {
+            catIndex++;
             const headline = document.createElement('h2');
             headline.innerHTML = bucketListArr[index].catName;
             startingPoint.appendChild(headline);
-            newDivTag.setAttribute('class', 'elementRow cat-color-' + catIndex);
-            catIndex++;
-        }else{
-            newDivTag.setAttribute('class', 'elementRow');
+            
         }
+        newDivTag.setAttribute('class', 'elementRow cat-color-' + catIndex);
         startingPoint.appendChild(newDivTag);
         createDivContents(bucketListArr[index].id, newDivTag, bucketListArr[index].description, bucketListArr[index].beenThereDoneThat);
         previousCategory = bucketListArr[index].catName;
