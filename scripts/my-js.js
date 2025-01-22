@@ -6,7 +6,7 @@ let idForEdit = 0;
 const MAX_ALLOWED_CATEGORIES = 4;
 const startingPoint = document.getElementById('bucketLists');
 const theSelectCat = document.getElementById('activityCategory');
-// console.log(theSelectCat);
+
 //localStorage.clear();
 
 //Create an array of objects (simulates that some data already exits), but not in the desired format
@@ -46,12 +46,10 @@ let startingActivities = [
 
 //If there are items in the local storage, read from it
 if (localStorage.getItem('bList') != null) {
-    console.log(localStorage);
     bucketListArr = JSON.parse(localStorage.getItem("bList"));
     refreshTheBucketList();
 }
 else {
-    console.log('bucket list empty');
     initializeBucketList(); //Read date from "external source" - local array in this file
     refreshTheBucketList();
 }
@@ -136,14 +134,12 @@ function refreshTheBucketList() {
     createClickEventsForDeleteButtons();
     //localStorage.clear();
     localStorage.setItem('bList', JSON.stringify(bucketListArr));
-    console.log(localStorage);
     updateAllCategoriesDropdown();
 }
 
 function createClickEventForToggle(id) {
     const cbButton = document.getElementById('toggle-id-' + id);
     cbButton.addEventListener('click', (event) => {
-        //console.log(event.target);
         //We update the element in the bucketListArr also, so that we are in sync with what is displayed in the list
         if (cbButton.innerHTML == '<img src="./images/checkbox-checked.PNG">') {
             bucketListArr[id].beenThereDoneThat = false;
@@ -155,7 +151,6 @@ function createClickEventForToggle(id) {
         }
         //Finally, store this change in the local storage
         localStorage.setItem('bList', JSON.stringify(bucketListArr));
-        console.log(bucketListArr);
     });
 }
 function createClickEventsForCheckboxButtons() {
@@ -171,7 +166,6 @@ function createClickEventForDelete(id) {
         //We will also need to re-index the list elements after the removed item,
         //as well as recreate the button events (to be in sync)
         removeBucketListElement(id);
-        console.log(bucketListArr);
     });
 }
 function createClickEventsForDeleteButtons() {
@@ -202,15 +196,12 @@ function createClickEventForEdit(id) {
         //But we need to know which of the elements we want to edit,
         //So we create a global variable to keep track of that
         idForEdit = id;
-
-        //console.log(bucketListArr);
     });
 }
 function removeBucketListElement(index) {
     if (index > -1) { // only splice array when item is found
         bucketListArr.splice(index, 1); // 2nd parameter means remove one item only
     }
-    console.log(bucketListArr);
     //We also need to reindex the element's id (actually only the ones following the removed element)
     //but I skip thar logic here
     reIndexBucketListItems();
@@ -236,7 +227,6 @@ function updateAllCategoriesDropdown() {
     findAllCategories();
     //Remove the previous categories
     theSelectCat.innerHTML = '';
-    console.log('Before update: ' + categoriesFound)
     for (let index = 0; index < categoriesFound.length; index++) {
         const newOption = document.createElement('option');
         newOption.setAttribute('Value', categoriesFound[index]);
@@ -280,7 +270,6 @@ function sortElementsForCategoryName(catName) {
     else {
         stopIndex = firstOccurenceIndex + foundElements;
         //We only reach this point if there are at least 2 elements of the same category
-        console.log('Sorting needed: Starting index ' + firstOccurenceIndex + ', Elements to sort: ' + foundElements);
         for (let index = firstOccurenceIndex; index < stopIndex - 1; index++) {
             //We need to perform a string comparison of 2 adjecent elements
             //A couple of times. I just do it once because I am lazy
@@ -318,28 +307,23 @@ function addElementToOrderedCollection(element) {
             orderedElement.id = bucketListArr.length;
             bucketListArr.push(orderedElement);
             //categoriesFound.push(newCategoryEl.value);
-            console.log('New category encountered');
             updateAllCategoriesDropdown();
-            console.log('Categories: ' + categoriesFound);
         }
         else {
             //The category exist already, so add the element to the end of the correct category
             //using the insertionIndex to keep track of the position
             let insertionIndex = 0;
             for (let index = 0; index < bucketListArr.length; index++) {
-                console.log('Index: ' + index);
                 if (bucketListArr[index].catName == element.catName) {
                     //If we reached this point, we have detected an element with the right category
                     //The insertionIndex will stop changing once we reach an element with a new category
                     //and the next index position will be where we want to insert the new element
                     insertionIndex = index;
-                    console.log('Insert here: ' + index)
                 }
             }
             let newIndex = insertionIndex + 1;
             orderedElement.id = newIndex;
             bucketListArr.splice(newIndex, 0, orderedElement);
-            console.log(bucketListArr);
             //We also need to re-index the elements following the newIndex
             for (let index = newIndex + 1; index < bucketListArr.length; index++) {
                 bucketListArr[index].id = index;
@@ -352,11 +336,6 @@ function addElementToOrderedCollection(element) {
 }
 
 //---------------- Event listeners (start) ----------------------------------
-const newCategoryEl = document.getElementById('categoryName');
-newCategoryEl.addEventListener('change', (event) => {
-    console.log(event.target.value);
-    // console.log(newCategory);
-});
 const categoriesFormEl = document.getElementById('categoriesForm');
 categoriesFormEl.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -369,14 +348,11 @@ categoriesFormEl.addEventListener('submit', (event) => {
         categoriesFound.push(newCategoryEl.value);
         updateAllCategoriesDropdown(newCategoryEl.value);
     }
-    console.log(categoriesFound);
-    // Reset form?
 });
 
 const newDescriptionEl = document.getElementById('activityDescription');
 newDescriptionEl.addEventListener('change', (event) => {
-    console.log(event.target.value);
-    // console.log(newCategory);
+
 });
 
 const editFormEl = document.getElementById('editForm');
@@ -396,12 +372,10 @@ editFormEl.addEventListener('submit', (event) => {
 
 const nextActivityEl = document.getElementById('activityName');
 nextActivityEl.addEventListener('change', (event) => {
-    console.log(event.target.value);
 });
 
 const chosenCategoryEl = document.getElementById('activityCategory');
 chosenCategoryEl.addEventListener('change', (event) => {
-    console.log(event.target.value);
 });
 
 const registerFormEl = document.getElementById('addBucketListItemForm');
@@ -415,7 +389,6 @@ registerFormEl.addEventListener('submit', (event) => {
     };
 
     addElementToOrderedCollection(newBucketListItem);
-    console.log(bucketListArr);
     // reset the input-field
     nextActivityEl.value = "";
     //Refresh the bucket list after a successfull submit
